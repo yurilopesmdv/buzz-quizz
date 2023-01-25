@@ -87,6 +87,8 @@ h2 {
     height: 181px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%)
 }
+
+
 /**** Estilização página de criação de quizz ****/
 .criarQuizz{
     position: relative;
@@ -119,19 +121,71 @@ h2 {
     margin: 5px 0;
 }
 
-.criarQuizz-main input{
-    border: 1px solid #D1D1D1;
+.criarQuizz-form-titulo{
     background: #FFFFFF;
+}
+
+.criarQuizz-main input{
     border-radius: 5px;
     height: 46px;
     width: 100%;
     padding-left: 10px;
+    border: 1px solid #D1D1D1;
 }
 
 .criarQuizz-main input::placeholder{
     font-size: 15px;
     color: #BABABA;
 }
+
+.valido input{
+    background: #FFFFFF;
+}
+
+.invalido input{
+    background-color: #FFE9E9
+}
+
+.valido div{
+    display: none;
+}
+
+.invalido div{
+    display: block;
+    font-size: 12px;
+    color: #EC362D;
+    margin-top: 2px;
+    background: #FFFFFF;
+}
+
+
+
+
+
+.btn-red{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+    width: 90%;
+    height: 54px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #FFF5F4;
+    background: #EC362D;
+    border: none;
+    border-radius: 15px;
+}
+
+.display-none{
+    display: none;
+}
+
+
+
+
+
+/**** Media queries ****/
 @media (max-width: 1100px){
     .conteudo-tela1 {
         width: 90%;
