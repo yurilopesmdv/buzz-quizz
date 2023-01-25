@@ -1,6 +1,22 @@
-body {
+*{
     font-family: 'Roboto', sans-serif;
-    background: #FAFAFA;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+/**** Estilização Header ****/
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 70px;
+    font-size: 37px;
+    line-height: 43px;
+    color: #FFFFFF;
+    background: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    top: 0;
 }
 .header {
     width: 100%;
@@ -70,6 +86,51 @@ h2 {
     width: 340px;
     height: 181px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%)
+}
+/**** Estilização página de criação de quizz ****/
+.criarQuizz{
+    position: relative;
+    top: 75px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.criarQuizz-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    height: 100px;
+}
+
+.criarQuizz-main{
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 21px 16px;
+}
+
+.criaQuizz-form{
+    width: 100%;
+    margin: 5px 0;
+}
+
+.criarQuizz-main input{
+    border: 1px solid #D1D1D1;
+    background: #FFFFFF;
+    border-radius: 5px;
+    height: 46px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.criarQuizz-main input::placeholder{
+    font-size: 15px;
+    color: #BABABA;
 }
 @media (max-width: 1100px){
     .conteudo-tela1 {
