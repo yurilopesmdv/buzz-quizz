@@ -20,4 +20,3 @@ function renderizarTela1() {
    </div>
 </div>`
 }
-renderizarTela1();
