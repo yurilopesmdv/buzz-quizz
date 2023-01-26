@@ -4,27 +4,32 @@ const infoBasicas = {
     urlImage: '',
     quantPerguntas: 0,
     quantNiveis: 0,
-    infoCorretas: 0,
 }
-
-let tituloQuizz = '';
-let urlImage = '';
-let quantPerguntas = 0;
-let quantNiveis = 0;
 
 let quizz = [];
 
 
-
-function infoBasicasQuizz(){
-    //Quando inserir todas as quatro informações básicas corretamente habilitar o botão para submit
-
-
+function submitInfoBasicasQuizz(){
+    //renderizar próxima página
 }
 
 
+//Função para habilitar o botão de submit das informações básicas do quizz
+function verificarTodasInfoBasicasQuizz(){
+    //Quando inserir todas as quatro informações básicas corretamente habilitar o botão para submit
+    const totalInfoCorretas = 4;
+    const button = document.querySelector('.criarQuizz button');
+
+    if(document.querySelectorAll('.valido').length === totalInfoCorretas){
+        button.removeAttribute('disabled');
+        return;
+    }
+    button.setAttribute('disabled', '');
+}
+
 
 //Função para validar a quantidade de niveis no quizz
+//OBS: classe 'valido' usada apenas para controle das informações válidas que forem inseridas
 function validarQuantNiveisQuizz({target}){
     infoBasicas.quantNiveis = target.value;
     const quantNiveisMin = 2;
@@ -39,6 +44,7 @@ function validarQuantNiveisQuizz({target}){
         quantNiveisAlerta.classList.remove('invalido');
         quantNiveisAlerta.classList.add('valido');
     }
+    verificarTodasInfoBasicasQuizz();
 }
 
 
@@ -57,6 +63,7 @@ function validarQuantPerguntasQuizz({target}){
         quantPerguntasAlerta.classList.remove('invalido');
         quantPerguntasAlerta.classList.add('valido');
     }
+    verificarTodasInfoBasicasQuizz();
 }
 
 
@@ -77,6 +84,7 @@ function validarUrlQuizz({target}){
         urlAlerta.classList.remove('valido');
         urlAlerta.classList.add('invalido');
     }
+    verificarTodasInfoBasicasQuizz();
 }
 
 
@@ -95,6 +103,7 @@ function validarTituloQuizz({target}){
         tituloAlerta.classList.remove('invalido');
         tituloAlerta.classList.add('valido');
     }
+    verificarTodasInfoBasicasQuizz();
 }
 
 

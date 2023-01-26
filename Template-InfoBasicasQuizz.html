@@ -21,38 +21,33 @@
                 <h1>Comece pelo começo</h1>
             </div>
             <div class="criarQuizz-main">
-
                 <div class="criaQuizz-form">
-                    <div class="criarQuizz-form-titulo valido">
+                    <div class="criarQuizz-form-titulo">
                         <input type="text" placeholder="Título do seu quizz">
-                        <div>O título deve ter entre 20 e 65 caracteres</div>
+                        <span>O título deve ter entre 20 e 65 caracteres</span>
                     </div>
                 </div>
-                
                 <div class="criaQuizz-form">
-                    <div class="criarQuizz-form-url valido">
+                    <div class="criarQuizz-form-url">
                         <input type="text" placeholder="URL da imagem do seu quizz">
-                        <div class="display-none">URL inválida</div>
+                        <span class="display-none">URL inválida</span>
                     </div>
                 </div>
-                
                 <div class="criaQuizz-form">
-                    <div class="criarQuizz-form-quantPerguntas valido">
+                    <div class="criarQuizz-form-quantPerguntas">
                         <input type="text" placeholder="Quantidade de perguntas do quizz">
-                        <div class="display-none">O quizz deve ter no mínimo 3 perguntas</div>
+                        <span class="display-none">O quizz deve ter no mínimo 3 perguntas</span>
                     </div>
                 </div>
-                
                 <div class="criaQuizz-form">
-                    <div class="criarQuizz-form-quantNiveis valido">
+                    <div class="criarQuizz-form-quantNiveis">
                         <input type="text" placeholder="Quantidade de níveis do quizz">
-                        <div class="display-none">Deve ser inserido no mínimo 2 níveis</div>
+                        <span class="display-none">Deve ser inserido no mínimo 2 níveis</span>
                     </div>
                 </div>
-
             </div>
             <div>
-                <button class="btn-red" type="submit" name="button" onclick="infoBasicasQuizz()" disabled>
+                <button class="btn-red" type="submit" name="button" onclick="submitInfoBasicasQuizz()" disabled>
                     Prosseguir para criar perguntas
                 </button>
             </div>

@@ -131,6 +131,7 @@ h2 {
     width: 100%;
     padding-left: 10px;
     border: 1px solid #D1D1D1;
+    background: #FFFFFF;
 }
 
 .criarQuizz-main input::placeholder{
@@ -138,29 +139,21 @@ h2 {
     color: #BABABA;
 }
 
-.valido input{
-    background: #FFFFFF;
+.criaQuizz-form span{
+    display: none;
 }
 
 .invalido input{
     background-color: #FFE9E9
 }
 
-.valido div{
-    display: none;
-}
-
-.invalido div{
+.invalido span{
     display: block;
     font-size: 12px;
     color: #EC362D;
     margin-top: 2px;
     background: #FFFFFF;
 }
-
-
-
-
 
 .btn-red{
     display: flex;
@@ -175,14 +168,14 @@ h2 {
     background: #EC362D;
     border: none;
     border-radius: 15px;
+    cursor: pointer;
 }
 
-.display-none{
-    display: none;
+.criarQuizz button:disabled{
+    background: #E7E7E7;
+    color: #696969;
+    cursor: auto;
 }
-
-
-
 
 
 /**** Media queries ****/
