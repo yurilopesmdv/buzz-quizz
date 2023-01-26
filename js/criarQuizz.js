@@ -9,10 +9,13 @@ const infoBasicas = {
 let quizz = [];
 
 
+
 function submitInfoBasicasQuizz(){
     //renderizar próxima página
 }
 
+
+///////////////////////////////  INFORMAÇÕES BÁSICAS DO QUIZZ  ///////////////////////////////////////////
 
 //Função para habilitar o botão de submit das informações básicas do quizz
 function verificarTodasInfoBasicasQuizz(){
@@ -114,6 +117,3 @@ function addEventQuizz(){
     document.querySelector('.criarQuizz-form-quantPerguntas input').addEventListener('input', validarQuantPerguntasQuizz);
     document.querySelector('.criarQuizz-form-quantNiveis input').addEventListener('input', validarQuantNiveisQuizz);
 }
-
-
-
