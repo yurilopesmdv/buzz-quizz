@@ -187,8 +187,8 @@ h2 {
 }
 
 
-/**/
-.box-pergunta{
+/*Segunda tela da criação do quizz*/
+.box-pergunta-resumida{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -198,9 +198,18 @@ h2 {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
-.box-pergunta h2{
+.box-pergunta-resumida h2{
     margin: 0;
 }
+
+.selecionado .box-pergunta-resumida{
+    display: none;
+}
+
+.hidden .criarQuizz-main{
+    display: none;
+}
+
 
 
 
