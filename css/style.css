@@ -1,7 +1,9 @@
 *{
-    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     background-color: #fafafa;
+}
+body {
+    font-family: 'Roboto', sans-serif;
 }
 /**** Estilização Header ****/
 header{
@@ -28,6 +30,7 @@ header{
 }
 .header h1 {
     color: #FFFFFF;
+    background-color: red;
     font-size: 37px;
     font-weight: 700;
 }
@@ -40,7 +43,7 @@ header{
     width: 1051px;
     margin: 0 195px;
 }
-.div-seus-quizzes{
+.div-seu-quizz-vazio{
     width: 100%;
     height: 181px;
     margin: 77px 0;
@@ -51,13 +54,50 @@ header{
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
 }
-.div-seus-quizzes p {
+.div-seus-quizzes {
+    width: 100%;
+    height: 221px;
+    margin: 77px 0;
+    display: flex;
+    flex-direction: column;
+    flex: start;
+}
+.titulo-div-seu-quizz {
+    width: 100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    
+}
+.botao-criar-quizz-peq {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    border: none;
+    border-radius: 30px;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}
+.lista-seus-quizzes {
+    width: 100%;
+    height: 181px;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.conteudo-tela1 img {
+    width: 100%;
+    height: 100%;
+}
+.div-seu-quizz-vazio p {
     font-size: 20px;
     color: #B9B9B9;
     font-weight: 400;
     text-align: center;
 }
-.botao-criar-quizz {
+.botao-criar-quizz-grande {
     width: 151px;
     height: 40px;
     border: 1px dashed #EC362D;
@@ -78,14 +118,30 @@ h2 {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-between;
     margin-bottom: 200px;
 }
 .quizz {
-    margin-top: 12px;;
+    position: relative;
+    margin-top: 10px;
+    margin-right: 10px;
     width: 340px;
     height: 181px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%)
+   
+}
+.degrade {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
+    z-index: 2;
+}
+.titulo-quizz-tela1 {
+    background-color: transparent;
+    color: white;
+    font-size: 19px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 14px;
 }
 /**** Estilização página de criação de quizz ****/
 .criarQuizz{
@@ -133,11 +189,36 @@ h2 {
     color: #BABABA;
 }
 @media (max-width: 1100px){
+    .conteudo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
     .conteudo-tela1 {
         width: 90%;
-        margin: 0;
+        height: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        
     }
-    .div-seus-quizzes {
+    .div-seu-quizz-vazio {
         width: 100%
     }
+    .div-seus-quizzes {
+        width: 100%;
+        margin-bottom: 20px;
+        height: 100%;
+    }
+    .lista-seus-quizzes {
+        height: 100%;
+        margin-bottom: 10px;
+    }
+    .quizz {
+        margin-right: 0;
+        width: 100%;
+    }
+    
 }
