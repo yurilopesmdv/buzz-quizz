@@ -130,17 +130,21 @@ h2 {
     margin: 5px 0;
 }
 
-.criarQuizz-main input{
+.criarQuizz-pergunta input{
     border-radius: 5px;
-    height: 46px;
-    width: 100%;
     padding-left: 10px;
+    width: 100%;
     border: 1px solid #D1D1D1;
     background: #FFFFFF;
 }
 
-.criarQuizz-main input::placeholder{
+.criarQuizz-pergunta input:focus{
+    outline-color: #8b8b8b;
+}
+
+.criarQuizz-pergunta input::placeholder{
     font-size: 15px;
+    font-family: 'Roboto', sans-serif;
     color: #BABABA;
 }
 
@@ -148,7 +152,7 @@ h2 {
     display: none;
 }
 
-.invalido input{
+.invalido input, .invalido textarea{
     background-color: #FFE9E9
 }
 
@@ -209,106 +213,6 @@ h2 {
 .hidden .criarQuizz-main{
     display: none;
 }
-/* Estilização do Quizz */
-.conteudo{
-    width: 1440px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-}
-.topo{
-    width: 1440px;
-    height: 69px;
-    box-shadow: 0px 4px 4px 0px #00000040;
-    background-color: #EC362D;
-    font-family: 'Roboto';
-    font-style: bold;
-    font-size: 37px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFFFFF;
-    position: fixed;
-    z-index: 10;
-}
-.cabecalhoQuizz{
-    width: 1440px;
-    height: 227px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 69px;
-}
-.nomeQuizz{
-    width: 1440px;
-    height: 227px;
-    font-family: 'Roboto';
-    font-size: 39px;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    color: #FFFFFF;
-    
-}
-.escurecer{
-    width: 1440px;
-    height: 227px;
-    background-color: black;
-    opacity: 60%;
-    z-index: 1;
-    position: absolute;
-}
-.escondido{
-    display: none;
-}
-.corpoQuizz{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.pergunta{
-    width: 759px;
-    height: auto;
-    display: flex;
-    margin-top: 42px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-left: 12px;
-    padding-top: 28px;
-    padding-right: 24px;
-}
-.caixaPergunta{
-    width: 688px;
-    height: 138px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-family: 'Roboto';
-    font-weight: 700;
-    font-size: 23px;
-    color: #FFFFFF;
-    background-color: #434ca0;
-    margin-left: 24px;
-}
-.alternativa{
-    width: 330px;
-    height: 210px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    margin-left: 24px;
-    font-family: 'Roboto';
-    font-weight: 700;
-    font-size: 20px;
-}
-
 
 /**** Media queries ****/
 @media (max-width: 1100px){

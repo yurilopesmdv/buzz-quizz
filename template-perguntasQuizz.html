@@ -20,81 +20,49 @@
         <header>BuzzQuizz</header>
         <form class="criarQuizz">
             <div class="criarQuizz-header">
-                <h2>Crie suas perguntas</h2>
+                <h2>Agora, decida os níveis</h2>
             </div>
             <div class="selecionado">
-                <div class="criarQuizz-main">
+                <div class="criarQuizz-pergunta">
                     <div class="criarQuizz-form">
-                        <h2>Pergunta 1</h2>
+                        <h2>Nivel ${i}</h2>
                         <div>
-                            <input type="text" placeholder="Texto da pergunta" onchange="validarPergunta(this)" required>
-                            <span>Deve ter no mínimo 20 caracteres</span>
+                            <input type="text" placeholder="Título do nível" onchange="validarTitulo(this, 10)" required>
+                            <span>Deve ter no mínimo 10 caracteres</span>
                         </div>
                     </div>
                     <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="Cor de fundo da pergunta. Ex: #FAFAFA" onchange="validarCor(this)" required>
-                            <span>Cor deve ser no formato hexadecimal</span>
+                        <div class="porcentagem">
+                            <input type="number" placeholder="% de acerto mínima" onchange="validarPorcentagemAcertos(this)" required>
+                            <span>Deve ser um número entre 0 e 100</span>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="criarQuizz-form">
-                        <h2>Resposta correta</h2>
-                        <div>
-                            <input type="text" placeholder="Resposta correta" required>
-                            <span>Deve ser inserido uma resposta correta</span>
-                        </div>
-                    </div>
+                    </div>                   
                     <div class="criarQuizz-form">
                         <div>
-                            <input type="url" placeholder="URL da resposta correta" onchange="validarURL(this)" required>
+                            <input type="url" placeholder="URL da imagem do nível" onchange="validarURL(this)" required>
                             <span>URL inválida</span>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="criarQuizz-form">
-                        <h2>Respostas incorretas</h2>
-                        <div>
-                            <input type="text" placeholder="Resposta incorreta 1" required>
-                            <span>Deve ser inserido pelo menos uma resposta incorreta</span>
-                        </div>
-                    </div>
+                    </div>                   
                     <div class="criarQuizz-form">
                         <div>
-                            <input type="text" placeholder="URL da imagem 1" onchange="validarURL(this)" required>
-                            <span>URL inválida</span>
+                            <textarea type="text" placeholder="Descrição do nível" onchange="validarTitulo(this, 30)" required></textarea>
+                            <span>No mínimo 30 caracteres</span>
                         </div>
                     </div>
-                    <hr>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="Resposta incorreta 2">
-                        </div>
-                    </div>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="URL da imagem 2">
-                            <span>URL inválida</span>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="Resposta incorreta 3">
-                        </div>
-                    </div>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="URL da imagem 3">
-                            <span>URL inválida</span>
-                        </div>
-                    </div>    
+                </div>
+                <div class="box-pergunta-resumida">
+                    <h2>Pergunta ${i}</h2>
+                    <ion-icon onclick="mostrarPergunta(this)" name="create-outline"></ion-icon>
                 </div>
             </div>
+
             <div>
-                <button class="btn-red" type="submit" name="button" onclick="submitPerguntasQuizz()">
+                <button class="btn-red" type="submit" name="button" onclick="submitNiveisQuizz(); return false">
                     Prosseguir para criar perguntas
                 </button>
+                <small class="small-hidden">
+                    *Verifique se todos os parâmetros foram inseridos. E se pelo menos um nível tenha porcentagem mínima de 0%
+                </small>
                 <hr><hr><hr><hr><hr><hr><hr>
             </div>
         </form>          

@@ -14,8 +14,189 @@ const quizz = {
 const preencheQuestions = (objetoQuestion) => quizz.questions.push(objetoQuestion);
 
 
+//Função que preenche o atributo levels do quizz
+const preencheLevels = (objetoLevel) => quizz.levels.push(objetoLevel);
+
+
+
+function preencherNiveis(entradas){
+    const input = entradas.querySelectorAll('input');
+    const textarea = entradas.querySelectorAll('textarea');
+
+    const level = {
+        title: input[0].value,
+        image: input[2].value,
+        text: textarea[0].value,
+        minValue: input[1].value,
+    }
+    preencheLevels(level);
+}
+
+
+
+/////////////////////////////////////      Validação e renderização dos níveis       ///////////////////////////////////
+
+//Função que verifica se todos os inputs foram preenchidos corretamente
+function checkInputValidados(){
+    if(document.querySelector('.invalido') === null){
+        return true;
+    }
+    return false;
+}
+
+//Função que verifica se os inputs obrigatórios foram preenchidos antes de armazenar informações
+function checkInput(){
+    const inputObrigatorios = document.querySelectorAll('[required]');
+
+    for(let i in inputObrigatorios){
+        if(inputObrigatorios[i].value === ''){
+            return false;
+        }
+    }
+    return true;
+}
+
+function verificarPorcentagemZero(){
+    const porcent = document.querySelectorAll('.porcentagem input');
+
+    for( let i in porcent){
+        if( Number(porcent[i].value) == 0 && porcent[i].value !== '' ){
+            return true;
+        }
+    }
+    return false;
+}
+
+
+function renderizaFinal(){
+    const tela = document.querySelector('.criarQuizz');
+
+    tela.innerHTML = `
+    <div>Final</div>
+    `;
+}
+
+
+function submitNiveisQuizz(){
+    if( checkInput() && checkInputValidados() && verificarPorcentagemZero() ){
+        //NodeList com todos os inputs dos níveis preenchidos
+        const todosNiveis = document.querySelectorAll('.criarQuizz-pergunta');
+        
+        for(let i = 0; i < todosNiveis.length; i++){
+            preencherNiveis( todosNiveis[i] );
+        }
+        renderizaFinal();
+    } else {
+        document.querySelector('.small-hidden').classList.remove('small-hidden');
+    }
+}
+
+
+function validarPorcentagemAcertos(porcentagem){
+    const divPai = porcentagem.parentNode;
+
+    if( Number(porcentagem.value) < 0 || Number(porcentagem.value) > 100 ){
+        divPai.classList.add('invalido');
+    } else {
+        divPai.classList.remove('invalido');
+    }
+}
+
+
 function renderizaNiveisQuizz(){
-    //Função para renderizar os níveis do quizz
+    //renderizar tela 3.3
+    const tela = document.querySelector('.criarQuizz');
+
+    tela.innerHTML = `
+        <div class="criarQuizz-header">
+            <h2>Agora, decida os níveis</h2>
+        </div>`;
+    
+    for( let i = 1; i <= quantNiveis; i++){
+        if(i === 1){
+            tela.innerHTML += `
+            <div class="selecionado">
+                <div class="criarQuizz-pergunta">
+                    <div class="criarQuizz-form">
+                        <h2>Nivel ${i}</h2>
+                        <div>
+                            <input type="text" placeholder="Título do nível" onchange="validarTitulo(this, 10)" required>
+                            <span>Deve ter no mínimo 10 caracteres</span>
+                        </div>
+                    </div>
+                    <div class="criarQuizz-form">
+                        <div>
+                            <input type="number" placeholder="% de acerto mínima" onchange="validarPorcentagemAcertos(this)" required>
+                            <span>Deve ser um número entre 0 e 100</span>
+                        </div>
+                    </div>                   
+                    <div class="criarQuizz-form">
+                        <div>
+                            <input type="url" placeholder="URL da imagem do nível" onchange="validarURL(this)" required>
+                            <span>URL inválida</span>
+                        </div>
+                    </div>                   
+                    <div class="criarQuizz-form">
+                        <div>
+                            <textarea type="text" placeholder="Descrição do nível" onchange="validarTitulo(this, 30)" required></textarea>
+                            <span>No mínimo 30 caracteres</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-pergunta-resumida">
+                    <h2>Nível ${i}</h2>
+                    <ion-icon onclick="mostrarPergunta(this)" name="create-outline"></ion-icon>
+                </div>
+            </div>`; 
+        } else {
+            tela.innerHTML += `
+            <div class="hidden">
+                <div class="criarQuizz-pergunta">
+                    <div class="criarQuizz-form">
+                        <h2>Nivel ${i}</h2>
+                        <div>
+                            <input type="text" placeholder="Título do nível" onchange="validarTitulo(this, 10)" required>
+                            <span>Deve ter no mínimo 10 caracteres</span>
+                        </div>
+                    </div>
+                    <div class="criarQuizz-form">
+                        <div>
+                            <input type="number" placeholder="% de acerto mínima" onchange="validarPorcentagemAcertos(this)" required>
+                            <span>Deve ser um número entre 0 e 100</span>
+                        </div>
+                    </div>                   
+                    <div class="criarQuizz-form">
+                        <div>
+                            <input type="url" placeholder="URL da imagem do nível" onchange="validarURL(this)" required>
+                            <span>URL inválida</span>
+                        </div>
+                    </div>                   
+                    <div class="criarQuizz-form">
+                        <div>
+                            <textarea type="text" placeholder="Descrição do nível" onchange="validarTitulo(this, 30)" required></textarea>
+                            <span>No mínimo 30 caracteres</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-pergunta-resumida">
+                    <h2>Nível ${i}</h2>
+                    <ion-icon onclick="mostrarPergunta(this)" name="create-outline"></ion-icon>
+                </div>
+            </div>`;
+        }
+        tela.innerHTML += `<hr>`;
+    }
+    tela.innerHTML += `
+        <div>
+            <button class="btn-red" type="submit" name="button" onclick="submitNiveisQuizz(); return false">
+                Finalizar quizz
+            </button>
+            <small class="small-hidden">
+                *Verifique se todos os parâmetros foram inseridos. E se pelo menos um nível tenha porcentagem mínima de 0%
+            </small>
+            <hr><hr>
+        </div>
+    `;
 }
 
 
@@ -61,36 +242,13 @@ function submitPerguntasQuizz(){
 }
 
 
-//Função que verifica se todos os inputs foram preenchidos corretamente
-function checkInputValidados(){
-    if(document.querySelector('.invalido') === null){
-        return true;
-    }
-    return false;
-}
-
-
-//Função que verifica se os inputs obrigatórios foram preenchidos antes de armazenar informações
-function checkInput(){
-    const inputObrigatorios = document.querySelectorAll('[required]');
-
-    for(let i in inputObrigatorios){
-        if(inputObrigatorios[i].value === ''){
-            return false;
-        }
-    }
-    return true;
-}
-
-
-/////////////////////////////////////            Validação das perguntas do quizz          ///////////////////////////////////
+//////////////////////////////////     Validação e renderização das perguntas do quizz    ////////////////////////////////
 
 //Função para validar a quantidade de caracteres na pergunta
-function validarPergunta(pergunta){
-    const divPai = pergunta.parentNode;
-    const quantCaracterMinPergunta = 20;
+function validarTitulo(titulo, quantCaracterMin){
+    const divPai = titulo.parentNode;
 
-    if(pergunta.value.length < quantCaracterMinPergunta){
+    if(titulo.value.length < quantCaracterMin){
         divPai.classList.add('invalido');
     } else {
         divPai.classList.remove('invalido');
@@ -121,9 +279,8 @@ function validarURL(url){
 }
 
 
-////////////////////////////// Função para renderizar a página de criação das perguntas do quizz ///////////////////////////////////
-
-function submitInfoBasicasQuizz(){
+//Função para renderizar a página de criação das perguntas do quizz
+function renderizaPerguntasQuizz(){
     //renderizar tela 3.2
     const tela = document.querySelector('.criarQuizz');
 
@@ -140,7 +297,7 @@ function submitInfoBasicasQuizz(){
                     <div class="criarQuizz-form">
                         <h2>Pergunta ${i}</h2>
                         <div>
-                            <input type="text" placeholder="Texto da pergunta" onchange="validarPergunta(this)" required>
+                            <input type="text" placeholder="Texto da pergunta" onchange="validarTitulo(this, 20)" required>
                             <span>Deve ter no mínimo 20 caracteres</span>
                         </div>
                     </div>
@@ -205,7 +362,7 @@ function submitInfoBasicasQuizz(){
                     <div class="criarQuizz-form">
                         <h2>Pergunta ${i}</h2>
                         <div>
-                            <input type="text" placeholder="Texto da pergunta" onchange="validarPergunta(this)" required>
+                            <input type="text" placeholder="Texto da pergunta" onchange="validarTitulo(this, 20)" required>
                             <span>Deve ter no mínimo 20 caracteres</span>
                         </div>
                     </div>
@@ -276,6 +433,7 @@ function submitInfoBasicasQuizz(){
     `;
 }
 
+
 //Função para navegar na página de criação das perguntas do quizz
 function mostrarPergunta(iconSelecionado){
     //Quando clicar no icon só vai vir a caixinha do icone, dai pegamos o box pai para adicionar a classe 'selecionado'
@@ -292,7 +450,7 @@ function mostrarPergunta(iconSelecionado){
 }
 
 
-////////////////////////////////////    INFORMAÇÕES BÁSICAS DO QUIZZ      ///////////////////////////////////////////
+////////////////////////////////////   INFORMAÇÕES BÁSICAS DO QUIZZ      ///////////////////////////////////////
 
 //Função para habilitar o botão de submit das informações básicas do quizz
 function verificarTodasInfoBasicasQuizz(){
@@ -316,7 +474,7 @@ function validarQuantNiveisQuizz({target}){
 
     const quantNiveisAlerta = document.querySelector('.criarQuizz-form-quantNiveis');
 
-    if( quantNiveis < quantNiveisMin || isNaN(quantNiveis) ){
+    if( quantNiveis < quantNiveisMin ){
         quantNiveisAlerta.classList.remove('valido');
         quantNiveisAlerta.classList.add('invalido');
 
@@ -328,7 +486,6 @@ function validarQuantNiveisQuizz({target}){
 }
 
 
-
 //Função para validar a quantidade de perguntas no quizz
 function validarQuantPerguntasQuizz({target}){
     quantPerguntas = target.value;
@@ -336,7 +493,7 @@ function validarQuantPerguntasQuizz({target}){
 
     const quantPerguntasAlerta = document.querySelector('.criarQuizz-form-quantPerguntas');
 
-    if( quantPerguntas < quantPerguntasMin || isNaN(quantPerguntas)){
+    if( quantPerguntas < quantPerguntasMin ){
         quantPerguntasAlerta.classList.remove('valido');
         quantPerguntasAlerta.classList.add('invalido');
     } else {
