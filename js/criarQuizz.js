@@ -1,6 +1,6 @@
 /**** Variáveis globais ****/
-let quantPerguntas = 1;
-let quantNiveis = 2;
+let quantPerguntas = 0;
+let quantNiveis = 0;
 
 const quizz = {
     title: '',
