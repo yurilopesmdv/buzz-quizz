@@ -27,25 +27,25 @@
                 </div>
                 <div class="criarQuizz-form">
                     <div class="criarQuizz-form-url">
-                        <input type="text" placeholder="URL da imagem do seu quizz">
+                        <input type="url" placeholder="URL da imagem do seu quizz">
                         <span class="display-none">URL inválida</span>
                     </div>
                 </div>
                 <div class="criarQuizz-form">
                     <div class="criarQuizz-form-quantPerguntas">
-                        <input type="text" placeholder="Quantidade de perguntas do quizz">
+                        <input type="number" placeholder="Quantidade de perguntas do quizz">
                         <span class="display-none">O quizz deve ter no mínimo 3 perguntas</span>
                     </div>
                 </div>
                 <div class="criarQuizz-form">
                     <div class="criarQuizz-form-quantNiveis">
-                        <input type="text" placeholder="Quantidade de níveis do quizz">
+                        <input type="number" placeholder="Quantidade de níveis do quizz">
                         <span class="display-none">Deve ser inserido no mínimo 2 níveis</span>
                     </div>
                 </div>
             </div>
             <div>
-                <button class="btn-red" type="submit" name="button" onclick="submitInfoBasicasQuizz()" disabled>
+                <button class="btn-red" type="submit" name="button" onclick="renderizaPerguntasQuizz()" disabled>
                     Prosseguir para criar perguntas
                 </button>
             </div>
