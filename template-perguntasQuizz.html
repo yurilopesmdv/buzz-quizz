@@ -18,7 +18,7 @@
     <body>
 
         <header>BuzzQuizz</header>
-        <div class="criarQuizz">
+        <form class="criarQuizz">
             <div class="criarQuizz-header">
                 <h2>Crie suas perguntas</h2>
             </div>
@@ -27,36 +27,42 @@
                     <div class="criarQuizz-form">
                         <h2>Pergunta 1</h2>
                         <div>
-                            <input type="text" placeholder="Texto da pergunta">
+                            <input type="text" placeholder="Texto da pergunta" onchange="validarPergunta(this)" required>
+                            <span>Deve ter no mínimo 20 caracteres</span>
                         </div>
                     </div>
                     <div class="criarQuizz-form">
                         <div>
-                            <input type="text" placeholder="Cor de fundo da pergunta">
+                            <input type="text" placeholder="Cor de fundo da pergunta. Ex: #FAFAFA" onchange="validarCor(this)" required>
+                            <span>Cor deve ser no formato hexadecimal</span>
                         </div>
                     </div>
                     <hr>
                     <div class="criarQuizz-form">
                         <h2>Resposta correta</h2>
                         <div>
-                            <input type="text" placeholder="Resposta correta">
+                            <input type="text" placeholder="Resposta correta" required>
+                            <span>Deve ser inserido uma resposta correta</span>
                         </div>
                     </div>
                     <div class="criarQuizz-form">
                         <div>
-                            <input type="text" placeholder="URL da resposta correta">
+                            <input type="url" placeholder="URL da resposta correta" onchange="validarURL(this)" required>
+                            <span>URL inválida</span>
                         </div>
                     </div>
                     <hr>
                     <div class="criarQuizz-form">
                         <h2>Respostas incorretas</h2>
                         <div>
-                            <input type="text" placeholder="Resposta incorreta 1">
+                            <input type="text" placeholder="Resposta incorreta 1" required>
+                            <span>Deve ser inserido pelo menos uma resposta incorreta</span>
                         </div>
                     </div>
                     <div class="criarQuizz-form">
                         <div>
-                            <input type="text" placeholder="URL da imagem 1">
+                            <input type="text" placeholder="URL da imagem 1" onchange="validarURL(this)" required>
+                            <span>URL inválida</span>
                         </div>
                     </div>
                     <hr>
@@ -68,6 +74,7 @@
                     <div class="criarQuizz-form">
                         <div>
                             <input type="text" placeholder="URL da imagem 2">
+                            <span>URL inválida</span>
                         </div>
                     </div>
                     <hr>
@@ -79,92 +86,20 @@
                     <div class="criarQuizz-form">
                         <div>
                             <input type="text" placeholder="URL da imagem 3">
+                            <span>URL inválida</span>
                         </div>
                     </div>    
                 </div>
-
-                <div class="box-pergunta-resumida">
-                    <h2>Pergunta 1</h2>
-                    <ion-icon onclick="mostrarPergunta(this)" name="create-outline"></ion-icon>
-                </div>
             </div>
-            <br>    
-            <div class="hidden">
-                <div class="criarQuizz-main">
-                    <div class="criarQuizz-form">
-                        <h2>Pergunta 2</h2>
-                        <div>
-                            <input type="text" placeholder="Texto da pergunta">
-                        </div>
-                    </div>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="Cor de fundo da pergunta">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="criarQuizz-form">
-                        <h2>Resposta correta</h2>
-                        <div>
-                            <input type="text" placeholder="Resposta correta">
-                        </div>
-                    </div>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="URL da resposta correta">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="criarQuizz-form">
-                        <h2>Respostas incorretas</h2>
-                        <div>
-                            <input type="text" placeholder="Resposta incorreta 1">
-                        </div>
-                    </div>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="URL da imagem 1">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="Resposta incorreta 2">
-                        </div>
-                    </div>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="URL da imagem 2">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="Resposta incorreta 3">
-                        </div>
-                    </div>
-                    <div class="criarQuizz-form">
-                        <div>
-                            <input type="text" placeholder="URL da imagem 3">
-                        </div>
-                    </div>    
-                </div>
-
-                <div class="box-pergunta-resumida">
-                    <h2>Pergunta 2</h2>
-                    <ion-icon onclick="mostrarPergunta(this)" name="create-outline"></ion-icon>
-                </div>
-            </div>
-            <br>
             <div>
-                <button class="btn-red" type="submit" name="button" onclick="submitInfoBasicasQuizz()" disabled>
+                <button class="btn-red" type="submit" name="button" onclick="submitPerguntasQuizz()">
                     Prosseguir para criar perguntas
                 </button>
                 <hr><hr><hr><hr><hr><hr><hr>
             </div>
-        </div>           
+        </form>          
         <script>
-            addEventQuizz();
+            //addEventQuizz();
         </script>
     </body>
 </html>

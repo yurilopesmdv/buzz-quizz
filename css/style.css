@@ -116,7 +116,7 @@ h2 {
     height: 100px;
 }
 
-.criarQuizz-main{
+.criarQuizz-pergunta{
     background-color: #FFFFFF;
     display: flex;
     align-items: center;
@@ -130,7 +130,7 @@ h2 {
     margin: 5px 0;
 }
 
-.criarQuizz-main input{
+.criarQuizz-pergunta input{
     border-radius: 5px;
     height: 46px;
     width: 100%;
@@ -139,7 +139,11 @@ h2 {
     background: #FFFFFF;
 }
 
-.criarQuizz-main input::placeholder{
+.criarQuizz-pergunta input:focus{
+    outline-color: #8b8b8b;
+}
+
+.criarQuizz-pergunta input::placeholder{
     font-size: 15px;
     color: #BABABA;
 }
@@ -206,12 +210,9 @@ h2 {
     display: none;
 }
 
-.hidden .criarQuizz-main{
+.hidden .criarQuizz-pergunta{
     display: none;
 }
-
-
-
 
 /**** Media queries ****/
 @media (max-width: 1100px){

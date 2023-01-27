@@ -14,14 +14,14 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
     <body>
         <header>BuzzQuizz</header>
-        <div class="criarQuizz">
+        <form class="criarQuizz">
             <div class="criarQuizz-header">
-                <h1>Comece pelo começo</h1>
+                <h2>Comece pelo começo</h2>
             </div>
-            <div class="criarQuizz-main">
+            <div class="criarQuizz-pergunta">
                 <div class="criarQuizz-form">
                     <div class="criarQuizz-form-titulo">
-                        <input type="text" placeholder="Título do seu quizz">
+                        <input type="text" placeholder="Título do seu quizz" required>
                         <span>O título deve ter entre 20 e 65 caracteres</span>
                     </div>
                 </div>
@@ -45,11 +45,11 @@
                 </div>
             </div>
             <div>
-                <button class="btn-red" type="submit" name="button" onclick="submitInfoBasicasQuizz()" disabled>
+                <button class="btn-red" type="submit" name="button" onclick="submitInfoBasicasQuizz()">
                     Prosseguir para criar perguntas
                 </button>
             </div>
-        </div>
+        </form>
         <script>
             addEventQuizz();
         </script>
