@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BuzzQuizz</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/criarQuizz.js"></script>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <body>
+
+        <header>BuzzQuizz</header>
+        <form class="criarQuizz">
+            <div class="criarQuizz-header">
+                <h2>Agora, decida os níveis</h2>
+            </div>
+            <div class="selecionado">
+                <div class="criarQuizz-pergunta">
+                    <div class="criarQuizz-form">
+                        <h2>Nivel ${i}</h2>
+                        <div>
+                            <input type="text" placeholder="Título do nível" onchange="validarTitulo(this, 10)" required>
+                            <span>Deve ter no mínimo 10 caracteres</span>
+                        </div>
+                    </div>
+                    <div class="criarQuizz-form">
+                        <div class="porcentagem">
+                            <input type="number" placeholder="% de acerto mínima" onchange="validarPorcentagemAcertos(this)" required>
+                            <span>Deve ser um número entre 0 e 100</span>
+                        </div>
+                    </div>                   
+                    <div class="criarQuizz-form">
+                        <div>
+                            <input type="url" placeholder="URL da imagem do nível" onchange="validarURL(this)" required>
+                            <span>URL inválida</span>
+                        </div>
+                    </div>                   
+                    <div class="criarQuizz-form">
+                        <div>
+                            <textarea type="text" placeholder="Descrição do nível" onchange="validarTitulo(this, 30)" required></textarea>
+                            <span>No mínimo 30 caracteres</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-pergunta-resumida">
+                    <h2>Pergunta ${i}</h2>
+                    <ion-icon onclick="mostrarPergunta(this)" name="create-outline"></ion-icon>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn-red" type="submit" name="button" onclick="submitNiveisQuizz(); return false">
+                    Prosseguir para criar perguntas
+                </button>
+                <small class="small-hidden">
+                    *Verifique se todos os parâmetros foram inseridos. E se pelo menos um nível tenha porcentagem mínima de 0%
+                </small>
+                <hr><hr><hr><hr><hr><hr><hr>
+            </div>
+        </form>          
+        <script>
+            //addEventQuizz();
+        </script>
+    </body>
+</html>

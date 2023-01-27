@@ -5,47 +5,53 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>BuzzQuizz</title>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/criarQuizz.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <link rel="stylesheet" type="text/css" href="css/reset.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-    </head>
     <body>
         <header>BuzzQuizz</header>
-        <div class="criarQuizz">
+        <form class="criarQuizz">
             <div class="criarQuizz-header">
-                <h1>Comece pelo começo</h1>
+                <h2>Comece pelo começo</h2>
             </div>
-            <div class="criarQuizz-main">
-                <div class="criaQuizz-form">
+            <div class="criarQuizz-pergunta">
+                <div class="criarQuizz-form">
                     <div class="criarQuizz-form-titulo">
-                        <input type="text" placeholder="Título do seu quizz">
+                        <input type="text" placeholder="Título do seu quizz" required>
+                        <span>O título deve ter entre 20 e 65 caracteres</span>
                     </div>
                 </div>
-                <div class="criaQuizz-form">
+                <div class="criarQuizz-form">
                     <div class="criarQuizz-form-url">
-                        <input type="text" placeholder="URL da imagem do seu quizz">
+                        <input type="url" placeholder="URL da imagem do seu quizz">
+                        <span class="display-none">URL inválida</span>
                     </div>
                 </div>
-                <div class="criaQuizz-form">
+                <div class="criarQuizz-form">
                     <div class="criarQuizz-form-quantPerguntas">
-                        <input type="text" placeholder="Quantidade de perguntas do quizz">
+                        <input type="number" placeholder="Quantidade de perguntas do quizz">
+                        <span class="display-none">O quizz deve ter no mínimo 3 perguntas</span>
                     </div>
                 </div>
-                <div class="criaQuizz-form">
+                <div class="criarQuizz-form">
                     <div class="criarQuizz-form-quantNiveis">
-                        <input type="text" placeholder="Quantidade de níveis do quizz">
+                        <input type="number" placeholder="Quantidade de níveis do quizz">
+                        <span class="display-none">Deve ser inserido no mínimo 2 níveis</span>
                     </div>
                 </div>
             </div>
-            <div style="margin-top: 40px">
-                <button class="btn-red" type="submit" name="button" onclick="ValidarInfoBasicasQuizz()" disabled>
+            <div>
+                <button class="btn-red" type="submit" name="button" onclick="renderizaPerguntasQuizz()" disabled>
                     Prosseguir para criar perguntas
                 </button>
             </div>
-        </div>        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-        <script type="text/javascript" src="script.js"></script>
-        <script type="text/javascript" src="criarQuizz.js"></script>
+        </form>
+        <script>
+            addEventQuizz();
+        </script>
     </body>
 </html>
