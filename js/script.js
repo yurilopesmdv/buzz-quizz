@@ -3,7 +3,6 @@ let quizzesUsuario = [];
 let todosQuizzes = [];
 let resposta = 0;
 let data;
-let titulo;
 
 function processarQuizzes() {
     conteudo.scrollTo(0, 0);
@@ -117,24 +116,31 @@ function selecionar (){
 }
 function mostrarQuizz(definir){
     let data = definir.data
-    titulo = data.title;
-    console.log(titulo)
     const exibir = document.querySelector('.conteudo');
-    exibir.innerHTML = `<div class="container">
-    '<div class="topo">
-        BuzzQuizz
-    </div>
-    <div class="cabecalhoQuizz">
-        <div class="imagemQuizz">
-            <img src="${data.image}" width="1440px" height="227px">
-            
+    exibir.innerHTML = `
+    <div class="container">
+        <div class="topo">
+            BuzzQuizz
         </div>
+        <div class="cabecalhoQuizz">
+            <div class="imagemQuizz">
+              <img src="${data.image}" width="1440px" height="227px">
+            </div>
         <div class="escurecer"></div>
         <div class="nomeQuizz">
             ${data.title};
         </div>
     </div>
     <div class="corpoQuizz">
+        
+      </div>
+  </div>`;
+
+  gerarPerguntas()
+  function gerarPerguntas(){
+    for(i=0; i < data.questions.length; i++ ){
+        const perguntas = document.querySelector('.conteudo');
+        perguntas.innerHTML = perguntas.innerHTML + `
         <div class="pergunta">
             <div class="caixaPergunta">
                 Em qual animal Olho-Tonto transfigurou Malfoy?
@@ -152,10 +158,10 @@ function mostrarQuizz(definir){
                       </div>
               </button>  
               <button onclick= "(selecionar(this))" class="alternativa alternativa3">
-                  <div class="imagemAlternativa">
+                <div class="imagemAlternativa">
                       <img src="./img/flor.jpg" width="320px" height="175px">
                       Gato
-               </div>
+                </div>
               </button> 
                <button onclick= "(selecionar(this))" class="alternativa alternativa4">
                   <div class="imagemAlternativa alternativa4">
@@ -164,10 +170,12 @@ function mostrarQuizz(definir){
                   </div>
                </button> 
               </div>
-      </div>
-  </div>`;
-  console.log(titulo);
+      </div>`
+    }
+  }
+  console.log(data)
 }
+
 processarQuizzes();
 function exibirQuizz(id){
     console.log(id);

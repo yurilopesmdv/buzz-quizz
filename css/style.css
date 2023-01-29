@@ -358,13 +358,13 @@ small{
     display: flex;
     margin-top: 42px;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     padding-left: 12px;
     padding-top: 28px;
     padding-right: 24px;
 }
 .caixaPergunta{
-    width: 695px;
+    width: 675px;
     height: 138px;
     display: flex;
     justify-content: center;
