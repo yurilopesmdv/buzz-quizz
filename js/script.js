@@ -139,11 +139,11 @@ function mostrarQuizz(definir){
   gerarPerguntas()
   function gerarPerguntas(){
     for(i=0; i < data.questions.length; i++ ){
-        const perguntas = document.querySelector('.conteudo');
+        const perguntas = document.querySelector('.corpoQuizz');
         perguntas.innerHTML = perguntas.innerHTML + `
         <div class="pergunta">
             <div class="caixaPergunta">
-                Em qual animal Olho-Tonto transfigurou Malfoy?
+                ${data.questions[i].title}
             </div>
             <button onclick= "(selecionar(this))" class="alternativa alternativa1">
                  <div class="imagemAlternativa">
@@ -171,6 +171,7 @@ function mostrarQuizz(definir){
                </button> 
               </div>
       </div>`
+      console.log(data.questions[0].answers)
     }
   }
   console.log(data)
