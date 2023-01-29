@@ -1,6 +1,9 @@
 const conteudo = document.querySelector('.conteudo');
 let quizzesUsuario = [];
 let todosQuizzes = [];
+let resposta = 0;
+let data;
+let titulo;
 
 function processarQuizzes() {
     conteudo.scrollTo(0, 0);
@@ -103,10 +106,71 @@ function gerarDivComQuizzUsuario() {
 }
 function gerarQuizzes(quizz) {
     return `
-    <div class="quizz" onclick="exibirQuizz(${quizz.id}">
+    <div class="quizz" onclick="exibirQuizz(${quizz.id})">
         <img src="${quizz.image}">
         <div class="degrade"></div>
         <div class="titulo-quizz-tela1">${quizz.title}</div>
     </div>`
 }
+function selecionar (){
+    console.log('0')
+}
+function mostrarQuizz(definir){
+    let data = definir.data
+    titulo = data.title;
+    console.log(titulo)
+    const exibir = document.querySelector('.conteudo');
+    exibir.innerHTML = `<div class="container">
+    '<div class="topo">
+        BuzzQuizz
+    </div>
+    <div class="cabecalhoQuizz">
+        <div class="imagemQuizz">
+            <img src="${data.image}" width="1440px" height="227px">
+            
+        </div>
+        <div class="escurecer"></div>
+        <div class="nomeQuizz">
+            ${data.title};
+        </div>
+    </div>
+    <div class="corpoQuizz">
+        <div class="pergunta">
+            <div class="caixaPergunta">
+                Em qual animal Olho-Tonto transfigurou Malfoy?
+            </div>
+            <button onclick= "(selecionar(this))" class="alternativa alternativa1">
+                 <div class="imagemAlternativa">
+                    <img src="./img/flor.jpg" width="320px" height="175px">
+                    Gato
+                  </div>
+             </button>
+             <button onclick= "(selecionar(this))" class="alternativa alternativa2">
+                      <div class="imagemAlternativa">
+                          <img src="./img/flor.jpg" width="320px" height="175px">
+                          Gato
+                      </div>
+              </button>  
+              <button onclick= "(selecionar(this))" class="alternativa alternativa3">
+                  <div class="imagemAlternativa">
+                      <img src="./img/flor.jpg" width="320px" height="175px">
+                      Gato
+               </div>
+              </button> 
+               <button onclick= "(selecionar(this))" class="alternativa alternativa4">
+                  <div class="imagemAlternativa alternativa4">
+                      <img src="./img/flor.jpg" width="320px" height="175px">
+                      Gato
+                  </div>
+               </button> 
+              </div>
+      </div>
+  </div>`;
+  console.log(titulo);
+}
 processarQuizzes();
+function exibirQuizz(id){
+    console.log(id);
+    let quizz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
+    quizz.then(mostrarQuizz);
+}
