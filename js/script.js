@@ -43,7 +43,7 @@ function separaQuizzUsuario(listaQuizzes) {
 function quizzEhDoUsuario(quizz) {
     const quizzesDoUsuario = getQuizzesLocal();
     for(let i = 0; i < quizzesDoUsuario.length; i++) {
-        if(quizzesDoUsuario[i].id === quizz.id) {
+        if(quizzesDoUsuario[i] === quizz.id) {
             return true;
         }
     }
