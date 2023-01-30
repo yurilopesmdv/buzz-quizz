@@ -40,14 +40,18 @@ function paginaInicial(){
 
 function armazenaIdUsuario(id){
     let IdsUsuario = [];
+    let objetoID = {};
 
     const idsLocalStorage = localStorage.getItem('id');
 
     if(idsLocalStorage === null){
-        localStorage.setItem('id', JSON.stringify(id));
+        objetoID = {id: id};
+        IdsUsuario.push(objetoID)
+        localStorage.setItem('id', JSON.stringify(IdsUsuario) );
     } else {
         IdsUsuario = JSON.parse(idsLocalStorage);
-        IdsUsuario.push(id);
+        objetoID = {id: id};
+        IdsUsuario.push(objetoID)
         localStorage.setItem('id', JSON.stringify(IdsUsuario));
     }
 }
