@@ -200,7 +200,7 @@ function selecionar(selecionado){
         }  
      }
      for(y=0; y < quantidadePerguntas; y++){
-     for(z = 0; z < data.questions[i].answers.length; z++ ){
+     for(z = 0; z < data.questions[y].answers.length; z++ ){
         if(data.questions[y].answers[z].isCorrectAnswer === true){
 
         document.querySelector(`.pergunta${y+1} .alternativa${z+1}`).classList.add('correta')
@@ -228,10 +228,7 @@ function selecionar(selecionado){
      }
      
     })
-    setTimeOut(descerPagina, 2000)
-}
-function descerPagina(index) {
-    document.querySelector(".pergunta:last-child").scrollIntoView()
+    
 }
 processarQuizzes();
 function exibirQuizz(id){
