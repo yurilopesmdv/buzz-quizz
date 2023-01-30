@@ -6,7 +6,8 @@ let data;
 let acertos = 0;
 let perguntasRespondidas = 0;
 let contadorAlternativas = 1
-
+let quantidadePerguntas = 0;
+let perguntaRespondida;
 
 function processarQuizzes() {
     conteudo.scrollTo(0, 0);
@@ -115,11 +116,8 @@ function gerarQuizzes(quizz) {
         <div class="titulo-quizz-tela1">${quizz.title}</div>
     </div>`
 }
-function selecionar (){
-    console.log('0')
-}
 function mostrarQuizz(definir){
-    let data = definir.data
+    data = definir.data
     const exibir = document.querySelector('.conteudo');
     exibir.innerHTML = `
     <div class="container">
@@ -166,11 +164,10 @@ function mostrarQuizz(definir){
             </div>`
             contadorAlternativas = 1;
         }else{
-            contadorAlternativas++;
-            
+            contadorAlternativas++;  
         }
         
-    }
+    }  
   }
   function gerarPerguntas(){
     for(i=0; i < data.questions.length; i++ ){
@@ -181,28 +178,60 @@ function mostrarQuizz(definir){
                 ${data.questions[i].title}
             </div>
         `
+        quantidadePerguntas++;
             gerarRespostas()
 
     }
   }
-  console.log(data)
+  
 }
 function selecionar(selecionado){
+    perguntasRespondidas++;
     selecionado.classList.add('selecionado');
     const parent = selecionado.parentNode;
     parent.classList.add('desabilitar')
     let todasAlternativas = parent.querySelectorAll('.alternativa')
-    console.log(todasAlternativas)
     todasAlternativas.forEach(res =>{
      for(i=0; i < todasAlternativas.length; i++){
-        console.log(todasAlternativas[i].classList)
         if(todasAlternativas[i].classList.contains('selecionado')){
 
         }else{
             todasAlternativas[i].classList.add('esbranquicado')
+        }  
+     }
+     for(y=0; y < quantidadePerguntas; y++){
+     for(z = 0; z < data.questions[i].answers.length; z++ ){
+        if(data.questions[y].answers[z].isCorrectAnswer === true){
+
+        document.querySelector(`.pergunta${y+1} .alternativa${z+1}`).classList.add('correta')
+        }else{
+        document.querySelector(`.pergunta${y+1} .alternativa${z+1}`).classList.add('incorreta')   
         }
-     }   
+
+        }
+     }
+     for(i=0; i < todasAlternativas.length; i++){
+        if(todasAlternativas[i].classList.contains('correta')){
+            todasAlternativas[i].classList.add('certa')
+        }else{
+            todasAlternativas[i].classList.add('errada')
+        }  
+        if(perguntasRespondidas === quantidadePerguntas){
+            for(i=0; i < todasAlternativas.length; i++){
+                if(todasAlternativas[i].classList.contains('correta') && todasAlternativas[i].classList.contains('selecionado') ){
+                    acertos++;
+                    console.log(acertos)
+                    
+                }  
+            }
+        }
+     }
+     
     })
+    setTimeOut(descerPagina, 2000)
+}
+function descerPagina(index) {
+    document.querySelector(".pergunta:last-child").scrollIntoView()
 }
 processarQuizzes();
 function exibirQuizz(id){
