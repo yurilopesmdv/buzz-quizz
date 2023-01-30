@@ -137,6 +137,24 @@ function mostrarQuizz(definir){
   </div>`;
 
   gerarPerguntas()
+  function gerarRespostas(){
+    for (let m = 0; m < data.questions[i].answers.length; m++){
+        let n = Math.floor(Math.random() * (m));
+        [data.questions[i].answers[m], data.questions[i].answers[n]] = [data.questions[i].answers[n], data.questions[i].answers[m]];
+        console.log(data.questions[i].answers);
+      }
+    for(j=0; j < data.questions[i].answers.length; j++){
+        const respostas = document.querySelector('.corpoQuizz');
+        respostas.innerHTML = respostas.innerHTML + `
+            <button onclick= "(selecionar(this))" class="alternativa alternativa1">
+                 <div class="imagemAlternativa">
+                    <img src="${data.questions[i].answers[j].image}" width="320px" height="175px">
+                    ${data.questions[i].answers[j].text}
+                  </div>
+             </button>
+        `
+    }
+  }
   function gerarPerguntas(){
     for(i=0; i < data.questions.length; i++ ){
         const perguntas = document.querySelector('.corpoQuizz');
@@ -144,34 +162,8 @@ function mostrarQuizz(definir){
         <div class="pergunta">
             <div class="caixaPergunta">
                 ${data.questions[i].title}
-            </div>
-            <button onclick= "(selecionar(this))" class="alternativa alternativa1">
-                 <div class="imagemAlternativa">
-                    <img src="./img/flor.jpg" width="320px" height="175px">
-                    Gato
-                  </div>
-             </button>
-             <button onclick= "(selecionar(this))" class="alternativa alternativa2">
-                      <div class="imagemAlternativa">
-                          <img src="./img/flor.jpg" width="320px" height="175px">
-                          Gato
-                      </div>
-              </button>  
-              <button onclick= "(selecionar(this))" class="alternativa alternativa3">
-                <div class="imagemAlternativa">
-                      <img src="./img/flor.jpg" width="320px" height="175px">
-                      Gato
-                </div>
-              </button> 
-               <button onclick= "(selecionar(this))" class="alternativa alternativa4">
-                  <div class="imagemAlternativa alternativa4">
-                      <img src="./img/flor.jpg" width="320px" height="175px">
-                      Gato
-                  </div>
-               </button> 
-              </div>
-      </div>`
-      console.log(data.questions[0].answers)
+            </div>`
+            gerarRespostas()
     }
   }
   console.log(data)
