@@ -43,13 +43,12 @@ function quizzEhDoUsuario(quizz) {
             return true;
         }
     }
-   
     return false;
 }
 function getQuizzesLocal() {
-    let dadosLocais = localStorage.getItem('quizz');
+    let dadosLocais = localStorage.getItem('id');
     if(dadosLocais !== null) {
-       const dadosLocaisSalvos = JSON.parse(dadosLocais);
+        const dadosLocaisSalvos = JSON.parse(dadosLocais);
         return dadosLocaisSalvos;
     } else {
         return [];
@@ -65,7 +64,7 @@ function renderizarQuizzes() {
     let divTodos = '';
     todosQuizzes.forEach(function (quizz) {
         divTodos = divTodos + gerarQuizzes(quizz);
-    });
+    })
     conteudo.innerHTML = `
     <div class="header">
         <h1>BuzzQuizz</h1>
@@ -90,7 +89,7 @@ function gerarDivUsuarioVazio() {
 function gerarDivComQuizzUsuario() {
     let listaQuizzUsuario = '';
     quizzesUsuario.forEach(function (quizz) {
-        listaQuizzUsuario += gerarQuizzes();
+        listaQuizzUsuario += gerarQuizzes(quizz);
     });
     return `
             <div class="div-seus-quizzes">
@@ -168,7 +167,51 @@ function mostrarQuizz(definir){
   }
   console.log(data)
 }
+function selecionar(selecionado){
+    perguntasRespondidas++;
+    selecionado.classList.add('selecionado');
+    const parent = selecionado.parentNode;
+    parent.classList.add('desabilitar')
+    let todasAlternativas = parent.querySelectorAll('.alternativa')
+    todasAlternativas.forEach(res =>{
+     for(i=0; i < todasAlternativas.length; i++){
+        if(todasAlternativas[i].classList.contains('selecionado')){
 
+        }else{
+            todasAlternativas[i].classList.add('esbranquicado')
+        }  
+     }
+     for(y=0; y < quantidadePerguntas; y++){
+     for(z = 0; z < data.questions[y].answers.length; z++ ){
+        if(data.questions[y].answers[z].isCorrectAnswer === true){
+
+        document.querySelector(`.pergunta${y+1} .alternativa${z+1}`).classList.add('correta')
+        }else{
+        document.querySelector(`.pergunta${y+1} .alternativa${z+1}`).classList.add('incorreta')   
+        }
+
+        }
+     }
+     for(i=0; i < todasAlternativas.length; i++){
+        if(todasAlternativas[i].classList.contains('correta')){
+            todasAlternativas[i].classList.add('certa')
+        }else{
+            todasAlternativas[i].classList.add('errada')
+        }  
+        if(perguntasRespondidas === quantidadePerguntas){
+            for(i=0; i < todasAlternativas.length; i++){
+                if(todasAlternativas[i].classList.contains('correta') && todasAlternativas[i].classList.contains('selecionado') ){
+                    acertos++;
+                    console.log(acertos)
+                    
+                }  
+            }
+        }
+     }
+     
+    })
+    
+}
 processarQuizzes();
 function exibirQuizz(id){
     console.log(id);
