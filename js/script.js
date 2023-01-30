@@ -8,6 +8,8 @@ let perguntasRespondidas = 0;
 let contadorAlternativas = 1
 let quantidadePerguntas = 0;
 let perguntaRespondida;
+let nivel;
+let aproveitamento;
 
 function processarQuizzes() {
     conteudo.scrollTo(0, 0);
@@ -224,11 +226,50 @@ function selecionar(selecionado){
                     
                 }  
             }
+            setTimeout(finalizar, 2000)
         }
      }
      
     })
     
+}
+function finalizar(){
+    console.log(data)
+    
+    aproveitamento = Math.round((acertos/quantidadePerguntas) * 100)
+    calculaNivel();
+    conteudo.innerHTML = conteudo.innerHTML + `
+    <div class="resultadoQuizz">
+        <div class="pergunta final">
+            <div class="caixaPergunta">
+                ${aproveitamento}% de acerto: ${data.levels[nivel].title}
+            </div>
+            <div class="boxResultado>
+                <div class="caixaResposta">
+                    <img src="${data.levels[nivel].image}" width="364px height="273px">
+                </div>
+                <div class="caixaResposta">
+                    ${data.levels[nivel].text}
+                </div>
+            </div>
+        </div>
+        <div class="botoes">
+            <button onclick="exibirQuizz()" class="reinicia">
+                Reiniciar Quizz
+            </button>
+            <button onclick="" class="voltar-Home">
+                Voltar pra home
+            </button>
+        </div>
+    </div>
+        `
+}
+function calculaNivel(){
+    if(aproveitamento <= data.levels[1].minValue){
+        nivel = 1;
+    }else{
+        nivel = 0;
+    }
 }
 processarQuizzes();
 function exibirQuizz(id){
