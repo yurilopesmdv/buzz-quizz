@@ -39,16 +39,17 @@ function separaQuizzUsuario(listaQuizzes) {
 function quizzEhDoUsuario(quizz) {
     const quizzesDoUsuario = getQuizzesLocal();
     for(let i = 0; i < quizzesDoUsuario.length; i++) {
-        if(quizzesDoUsuario[i].id == quizz.id) {
+        if(quizzesDoUsuario[i].id === quizz.id) {
             return true;
         }
     }
+   
     return false;
 }
 function getQuizzesLocal() {
-    let dadosLocais = localStorage.getItem('id');
+    let dadosLocais = localStorage.getItem('quizz');
     if(dadosLocais !== null) {
-        const dadosLocaisSalvos = JSON.parse(dadosLocais);
+       const dadosLocaisSalvos = JSON.parse(dadosLocais);
         return dadosLocaisSalvos;
     } else {
         return [];
@@ -64,7 +65,7 @@ function renderizarQuizzes() {
     let divTodos = '';
     todosQuizzes.forEach(function (quizz) {
         divTodos = divTodos + gerarQuizzes(quizz);
-    })
+    });
     conteudo.innerHTML = `
     <div class="header">
         <h1>BuzzQuizz</h1>
@@ -89,7 +90,7 @@ function gerarDivUsuarioVazio() {
 function gerarDivComQuizzUsuario() {
     let listaQuizzUsuario = '';
     quizzesUsuario.forEach(function (quizz) {
-        listaQuizzUsuario += gerarQuizzes(quizz);
+        listaQuizzUsuario += gerarQuizzes();
     });
     return `
             <div class="div-seus-quizzes">
@@ -106,7 +107,7 @@ function gerarQuizzes(quizz) {
     return `
     <div class="quizz" onclick="exibirQuizz(${quizz.id})">
         <img src="${quizz.image}">
-        <div class="degrade"></div>
+        <div class="degrade">a</div>
         <div class="titulo-quizz-tela1">${quizz.title}</div>
     </div>`
 }
@@ -167,55 +168,7 @@ function mostrarQuizz(definir){
   }
   console.log(data)
 }
-<<<<<<< HEAD
 
-=======
-function selecionar(selecionado){
-    perguntasRespondidas++;
-    selecionado.classList.add('selecionado');
-    const parent = selecionado.parentNode;
-    parent.classList.add('desabilitar')
-    let todasAlternativas = parent.querySelectorAll('.alternativa')
-    todasAlternativas.forEach(res =>{
-     for(i=0; i < todasAlternativas.length; i++){
-        if(todasAlternativas[i].classList.contains('selecionado')){
-
-        }else{
-            todasAlternativas[i].classList.add('esbranquicado')
-        }  
-     }
-     for(y=0; y < quantidadePerguntas; y++){
-     for(z = 0; z < data.questions[y].answers.length; z++ ){
-        if(data.questions[y].answers[z].isCorrectAnswer === true){
-
-        document.querySelector(`.pergunta${y+1} .alternativa${z+1}`).classList.add('correta')
-        }else{
-        document.querySelector(`.pergunta${y+1} .alternativa${z+1}`).classList.add('incorreta')   
-        }
-
-        }
-     }
-     for(i=0; i < todasAlternativas.length; i++){
-        if(todasAlternativas[i].classList.contains('correta')){
-            todasAlternativas[i].classList.add('certa')
-        }else{
-            todasAlternativas[i].classList.add('errada')
-        }  
-        if(perguntasRespondidas === quantidadePerguntas){
-            for(i=0; i < todasAlternativas.length; i++){
-                if(todasAlternativas[i].classList.contains('correta') && todasAlternativas[i].classList.contains('selecionado') ){
-                    acertos++;
-                    console.log(acertos)
-                    
-                }  
-            }
-        }
-     }
-     
-    })
-    
-}
->>>>>>> bc4bbadd31396ec3325f43db420e685e26259c52
 processarQuizzes();
 function exibirQuizz(id){
     console.log(id);
