@@ -3,6 +3,10 @@ let quizzesUsuario = [];
 let todosQuizzes = [];
 let resposta = 0;
 let data;
+let acertos = 0;
+let perguntasRespondidas = 0;
+let contadorAlternativas = 1
+
 
 function processarQuizzes() {
     conteudo.scrollTo(0, 0);
@@ -133,45 +137,77 @@ function mostrarQuizz(definir){
     </div>
     <div class="corpoQuizz">
         
-      </div>
-  </div>`;
+      </div>`;
 
   gerarPerguntas()
   function gerarRespostas(){
     for (let m = 0; m < data.questions[i].answers.length; m++){
         let n = Math.floor(Math.random() * (m));
         [data.questions[i].answers[m], data.questions[i].answers[n]] = [data.questions[i].answers[n], data.questions[i].answers[m]];
-        console.log(data.questions[i].answers);
+        
       }
     for(j=0; j < data.questions[i].answers.length; j++){
-        const respostas = document.querySelector('.corpoQuizz');
+        
+        const respostas = document.querySelector(`.pergunta${i+1}`);
+        
         respostas.innerHTML = respostas.innerHTML + `
-            <button onclick= "(selecionar(this))" class="alternativa alternativa1">
-                 <div class="imagemAlternativa">
-                    <img src="${data.questions[i].answers[j].image}" width="320px" height="175px">
-                    ${data.questions[i].answers[j].text}
-                  </div>
-             </button>
+            
+                <button onclick= "(selecionar(this))" class="alternativa alternativa${j+1}">
+                    <div class="imagemAlternativa">
+                        <img src="${data.questions[i].answers[j].image}" width="320px" height="175px">
+                        ${data.questions[i].answers[j].text}
+                    </div>
+                </button>    
         `
+        
+        if(contadorAlternativas == data.questions[i].answers.length){
+            
+            respostas.innerHTML = respostas.innerHTML + `
+            </div>`
+            contadorAlternativas = 1;
+        }else{
+            contadorAlternativas++;
+            
+        }
+        
     }
   }
   function gerarPerguntas(){
     for(i=0; i < data.questions.length; i++ ){
         const perguntas = document.querySelector('.corpoQuizz');
         perguntas.innerHTML = perguntas.innerHTML + `
-        <div class="pergunta">
+        <div class="pergunta pergunta${i+1}">
             <div class="caixaPergunta">
                 ${data.questions[i].title}
-            </div>`
+            </div>
+        `
             gerarRespostas()
+
     }
   }
   console.log(data)
 }
+function selecionar(selecionado){
+    selecionado.classList.add('selecionado');
+    const parent = selecionado.parentNode;
+    parent.classList.add('desabilitar')
+    let todasAlternativas = parent.querySelectorAll('.alternativa')
+    console.log(todasAlternativas)
+    todasAlternativas.forEach(res =>{
+     for(i=0; i < todasAlternativas.length; i++){
+        console.log(todasAlternativas[i].classList)
+        if(todasAlternativas[i].classList.contains('selecionado')){
 
+        }else{
+            todasAlternativas[i].classList.add('esbranquicado')
+        }
+     }   
+    })
+}
 processarQuizzes();
 function exibirQuizz(id){
     console.log(id);
     let quizz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
     quizz.then(mostrarQuizz);
+
 }
