@@ -111,7 +111,7 @@ function gerarQuizzes(quizz) {
     return `
     <div class="quizz" onclick="exibirQuizz(${quizz.id})">
         <img src="${quizz.image}">
-        <div class="degrade"></div>
+        
         <div class="titulo-quizz-tela1">${quizz.title}</div>
     </div>`
 }
