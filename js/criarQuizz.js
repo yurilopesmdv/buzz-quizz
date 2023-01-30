@@ -33,6 +33,60 @@ function preencherNiveis(entradas){
 }
 
 
+function paginaInicial(){
+    window.location.reload();
+}
+
+
+function armazenaIdUsuario(id){
+    let IdsUsuario = [];
+
+    const idsLocalStorage = localStorage.getItem('id');
+
+    if(idsLocalStorage === null){
+        localStorage.setItem('id', JSON.stringify(id));
+    } else {
+        IdsUsuario = JSON.parse(idsLocalStorage);
+        IdsUsuario.push(id);
+        localStorage.setItem('id', JSON.stringify(IdsUsuario));
+    }
+}
+
+
+function renderizaTelaFinal(resposta){
+
+    armazenaIdUsuario(resposta.data.id);
+
+    const tela = document.querySelector('.criarQuizz');
+
+    tela.innerHTML = `
+        <div class="criarQuizz-header">
+            <h2>Seu quizz está pronto</h2>
+        </div>
+        <div class="quizz-centralizado" onclick="exibirQuizz(${resposta.data.id})">
+            <img src="${quizz.image}">
+            <div class="degrade"></div>
+            <div class="titulo-quizz-tela1">${quizz.title}</div>
+        </div>
+        <button class="btn-red btn-acessar" type="button" name="button" onclick="acessarQuizz()">
+            Acessar Quizz
+        </button>
+        <div class="voltar-home" onclick="paginaInicial()">Voltar para a home</div> 
+    `;
+}
+
+function ErrorQuizz(erro){
+    console.log('Erro inexperado', erro)
+}
+
+function armazenaServidor(){
+    const promise = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizz);
+
+    promise.then(renderizaTelaFinal);
+    promise.catch(ErrorQuizz);
+}
+
+
 
 /////////////////////////////////////      Validação e renderização dos níveis       ///////////////////////////////////
 
@@ -68,15 +122,6 @@ function verificarPorcentagemZero(){
 }
 
 
-function renderizaFinal(){
-    const tela = document.querySelector('.criarQuizz');
-
-    tela.innerHTML = `
-    <div>Final</div>
-    `;
-}
-
-
 function submitNiveisQuizz(){
     if( checkInput() && checkInputValidados() && verificarPorcentagemZero() ){
         //NodeList com todos os inputs dos níveis preenchidos
@@ -85,7 +130,7 @@ function submitNiveisQuizz(){
         for(let i = 0; i < todosNiveis.length; i++){
             preencherNiveis( todosNiveis[i] );
         }
-        renderizaFinal();
+        armazenaServidor();
     } else {
         document.querySelector('.small-hidden').classList.remove('small-hidden');
     }
@@ -125,7 +170,7 @@ function renderizaNiveisQuizz(){
                         </div>
                     </div>
                     <div class="criarQuizz-form">
-                        <div>
+                        <div class="porcentagem">
                             <input type="number" placeholder="% de acerto mínima" onchange="validarPorcentagemAcertos(this)" required>
                             <span>Deve ser um número entre 0 e 100</span>
                         </div>
@@ -160,7 +205,7 @@ function renderizaNiveisQuizz(){
                         </div>
                     </div>
                     <div class="criarQuizz-form">
-                        <div>
+                        <div class="porcentagem">
                             <input type="number" placeholder="% de acerto mínima" onchange="validarPorcentagemAcertos(this)" required>
                             <span>Deve ser um número entre 0 e 100</span>
                         </div>
@@ -558,4 +603,48 @@ function addEventQuizz(){
     document.querySelector('.criarQuizz-form-url input').addEventListener('input', validarUrlQuizz);
     document.querySelector('.criarQuizz-form-quantPerguntas input').addEventListener('input', validarQuantPerguntasQuizz);
     document.querySelector('.criarQuizz-form-quantNiveis input').addEventListener('input', validarQuantNiveisQuizz);
+}
+
+
+function criarQuizz(){
+    const criarQuizz = document.querySelector('.conteudo');
+    criarQuizz.innerHTML = `
+    <header>BuzzQuizz</header>
+    <form class="criarQuizz">
+        <div class="criarQuizz-header">
+            <h2>Comece pelo começo</h2>
+        </div>
+        <div class="criarQuizz-pergunta">
+            <div class="criarQuizz-form">
+                <div class="criarQuizz-form-titulo">
+                    <input type="text" placeholder="Título do seu quizz" required>
+                    <span>O título deve ter entre 20 e 65 caracteres</span>
+                </div>
+            </div>
+            <div class="criarQuizz-form">
+                <div class="criarQuizz-form-url">
+                    <input type="url" placeholder="URL da imagem do seu quizz">
+                    <span class="display-none">URL inválida</span>
+                </div>
+            </div>
+            <div class="criarQuizz-form">
+                <div class="criarQuizz-form-quantPerguntas">
+                    <input type="number" placeholder="Quantidade de perguntas do quizz">
+                    <span class="display-none">O quizz deve ter no mínimo 3 perguntas</span>
+                </div>
+            </div>
+            <div class="criarQuizz-form">
+                <div class="criarQuizz-form-quantNiveis">
+                    <input type="number" placeholder="Quantidade de níveis do quizz">
+                    <span class="display-none">Deve ser inserido no mínimo 2 níveis</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn-red" type="submit" name="button" onclick="renderizaPerguntasQuizz()" disabled>
+                Prosseguir para criar perguntas
+            </button>
+        </div>
+    </form>`;
+    addEventQuizz();
 }

@@ -1,6 +1,8 @@
 const conteudo = document.querySelector('.conteudo');
 let quizzesUsuario = [];
 let todosQuizzes = [];
+let resposta = 0;
+let data;
 
 function processarQuizzes() {
     conteudo.scrollTo(0, 0);
@@ -109,4 +111,67 @@ function gerarQuizzes(quizz) {
         <div class="titulo-quizz-tela1">${quizz.title}</div>
     </div>`
 }
+function selecionar (){
+    console.log('0')
+}
+function mostrarQuizz(definir){
+    let data = definir.data
+    const exibir = document.querySelector('.conteudo');
+    exibir.innerHTML = `
+    <div class="container">
+        <div class="topo">
+            BuzzQuizz
+        </div>
+        <div class="cabecalhoQuizz">
+            <div class="imagemQuizz">
+              <img src="${data.image}" width="1440px" height="227px">
+            </div>
+        <div class="escurecer"></div>
+        <div class="nomeQuizz">
+            ${data.title};
+        </div>
+    </div>
+    <div class="corpoQuizz">
+        
+      </div>
+  </div>`;
+
+  gerarPerguntas()
+  function gerarRespostas(){
+    for (let m = 0; m < data.questions[i].answers.length; m++){
+        let n = Math.floor(Math.random() * (m));
+        [data.questions[i].answers[m], data.questions[i].answers[n]] = [data.questions[i].answers[n], data.questions[i].answers[m]];
+        console.log(data.questions[i].answers);
+      }
+    for(j=0; j < data.questions[i].answers.length; j++){
+        const respostas = document.querySelector('.corpoQuizz');
+        respostas.innerHTML = respostas.innerHTML + `
+            <button onclick= "(selecionar(this))" class="alternativa alternativa1">
+                 <div class="imagemAlternativa">
+                    <img src="${data.questions[i].answers[j].image}" width="320px" height="175px">
+                    ${data.questions[i].answers[j].text}
+                  </div>
+             </button>
+        `
+    }
+  }
+  function gerarPerguntas(){
+    for(i=0; i < data.questions.length; i++ ){
+        const perguntas = document.querySelector('.corpoQuizz');
+        perguntas.innerHTML = perguntas.innerHTML + `
+        <div class="pergunta">
+            <div class="caixaPergunta">
+                ${data.questions[i].title}
+            </div>`
+            gerarRespostas()
+    }
+  }
+  console.log(data)
+}
+
 processarQuizzes();
+function exibirQuizz(id){
+    console.log(id);
+    let quizz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
+    quizz.then(mostrarQuizz);
+}
