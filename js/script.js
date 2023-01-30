@@ -46,17 +46,16 @@ function separaQuizzUsuario(listaQuizzes) {
 function quizzEhDoUsuario(quizz) {
     const quizzesDoUsuario = getQuizzesLocal();
     for(let i = 0; i < quizzesDoUsuario.length; i++) {
-        if(quizzesDoUsuario[i] === quizz.id) {
+        if(quizzesDoUsuario[i].id == quizz.id) {
             return true;
         }
     }
-   
     return false;
 }
 function getQuizzesLocal() {
-    let dadosLocais = localStorage.getItem('quizz');
+    let dadosLocais = localStorage.getItem('id');
     if(dadosLocais !== null) {
-       const dadosLocaisSalvos = JSON.parse(dadosLocais);
+        const dadosLocaisSalvos = JSON.parse(dadosLocais);
         return dadosLocaisSalvos;
     } else {
         return [];
@@ -72,7 +71,7 @@ function renderizarQuizzes() {
     let divTodos = '';
     todosQuizzes.forEach(function (quizz) {
         divTodos = divTodos + gerarQuizzes(quizz);
-    });
+    })
     conteudo.innerHTML = `
     <div class="header">
         <h1>BuzzQuizz</h1>
@@ -97,7 +96,7 @@ function gerarDivUsuarioVazio() {
 function gerarDivComQuizzUsuario() {
     let listaQuizzUsuario = '';
     quizzesUsuario.forEach(function (quizz) {
-        listaQuizzUsuario += gerarQuizzes();
+        listaQuizzUsuario += gerarQuizzes(quizz);
     });
     return `
             <div class="div-seus-quizzes">
@@ -114,7 +113,7 @@ function gerarQuizzes(quizz) {
     return `
     <div class="quizz" onclick="exibirQuizz(${quizz.id})">
         <img src="${quizz.image}">
-        <div class="degrade"></div>
+        
         <div class="titulo-quizz-tela1">${quizz.title}</div>
     </div>`
 }
