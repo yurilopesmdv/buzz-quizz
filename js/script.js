@@ -39,7 +39,7 @@ function separaQuizzUsuario(listaQuizzes) {
 function quizzEhDoUsuario(quizz) {
     const quizzesDoUsuario = getQuizzesLocal();
     for(let i = 0; i < quizzesDoUsuario.length; i++) {
-        if(quizzesDoUsuario[i].id === quizz.id) {
+        if(quizzesDoUsuario[i].id == quizz.id) {
             return true;
         }
     }
@@ -167,6 +167,9 @@ function mostrarQuizz(definir){
   }
   console.log(data)
 }
+<<<<<<< HEAD
+
+=======
 function selecionar(selecionado){
     perguntasRespondidas++;
     selecionado.classList.add('selecionado');
@@ -212,6 +215,7 @@ function selecionar(selecionado){
     })
     
 }
+>>>>>>> bc4bbadd31396ec3325f43db420e685e26259c52
 processarQuizzes();
 function exibirQuizz(id){
     console.log(id);
